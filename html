@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>THE DAILY 3</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --card: #141414;
+            --text: #e0e0e0;
+            --accent: #ff3b30; /* Noir red accent */
+            --border: #262626;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 1.2rem;
+            letter-spacing: 0.2rem;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 5px;
+        }
+
+        .task-container {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .task-row {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--border);
+            color: white;
+            width: 100%;
+            padding: 8px 0;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-bottom-color: var(--accent);
+        }
+
+        .meta-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .meta-group {
+            flex: 1;
+        }
+
+        .meta-group input {
+            font-size: 0.9rem;
+        }
+
+        ::placeholder {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>THE DAILY 3</h1>
+
+    <div class="task-container" id="app">
+        <div class="task-row">
+            <label>Task One</label>
+            <input type="text" id="t1-name" placeholder="What needs doing?">
+            <div class="meta-row">
+                <div class="meta-group">
+                    <label>Start Time</label>
+                    <input type="time" id="t1-time">
+                </div>
+                <div class="meta-group">
+                    <label>Duration</label>
+                    <input type="text" id="t1-dur" placeholder="e.g. 45m">
+                </div>
+            </div>
+        </div>
+
+        <div class="task-row">
+            <label>Task Two</label>
+            <input type="text" id="t2-name" placeholder="...">
+            <div class="meta-row">
+                <div class="meta-group">
+                    <label>Start Time</label>
+                    <input type="time" id="t2-time">
+                </div>
+                <div class="meta-group">
+                    <label>Duration</label>
+                    <input type="text" id="t2-dur" placeholder="...">
+                </div>
+            </div>
+        </div>
+
+        <div class="task-row">
+            <label>Task Three</label>
+            <input type="text" id="t3-name" placeholder="...">
+            <div class="meta-row">
+                <div class="meta-group">
+                    <label>Start Time</label>
+                    <input type="time" id="t3-time">
+                </div>
+                <div class="meta-group">
+                    <label>Duration</label>
+                    <input type="text" id="t3-dur" placeholder="...">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const inputs = document.querySelectorAll('input');
+
+        // Load saved data
+        window.onload = () => {
+            inputs.forEach(input => {
+                const saved = localStorage.getItem(input.id);
+                if (saved) input.value = saved;
+            });
+        };
+
+        // Save data on change
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                localStorage.setItem(input.id, input.value);
+            });
+        });
+    </script>
+</body>
+</html>
