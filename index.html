@@ -143,12 +143,10 @@
         const inputs = document.querySelectorAll('input');
 
         // Load saved data
-        window.onload = () => {
-            inputs.forEach(input => {
-                const saved = localStorage.getItem(input.id);
-                if (saved) input.value = saved;
-            });
-        };
+        inputs.forEach(input => {
+            const saved = localStorage.getItem(input.id);
+            if (saved) input.value = saved;
+        });
 
         // Save data on change
         inputs.forEach(input => {
